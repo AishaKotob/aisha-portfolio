@@ -5,18 +5,7 @@ import { profileData } from "@/data/profile";
 import { ArrowDownRight, FileDown, Sparkles, Code2, Layers, Cpu } from "lucide-react";
 import { useDevNotifications } from "@/components/ui/DevNotificationHUD";
 
-// Lazy-load Three.js Digital Bloom with client fallback
-const DigitalBloom = dynamic(
-  () => import("@/components/canvas/DigitalBloom").then((mod) => mod.DigitalBloom),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[450px] flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full border-2 border-dashed border-[#F06595]/50 animate-spin" />
-      </div>
-    ),
-  }
-);
+import { HeroFrontendStudio } from "@/components/canvas/HeroFrontendStudio";
 
 export function HeroSection({
   onExploreWork,
@@ -137,9 +126,9 @@ export function HeroSection({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Three.js Digital Bloom */}
+        {/* RIGHT COLUMN: Interactive Frontend Component & Motion Studio */}
         <div className="lg:col-span-5 relative flex items-center justify-center">
-          <DigitalBloom />
+          <HeroFrontendStudio />
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { NotificationProvider } from "@/components/ui/DevNotificationHUD";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
 const geistSans = Geist({
@@ -122,10 +121,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#FCFAFC] text-[#1C1924] font-sans antialiased selection:bg-[#F06595]/20 selection:text-[#A61E4D]">
-        <NotificationProvider>
-          <SmoothScroll />
-          {children}
-        </NotificationProvider>
+        <SmoothScroll />
+        {children}
       </body>
     </html>
   );

@@ -1,12 +1,12 @@
 "use client";
 
 import { projectsData, Project } from "@/data/projects";
-import { BrowserFrame } from "@/components/media/BrowserFrame";
+import { QanzInteractivePreview } from "@/components/media/QanzInteractivePreview";
 import { CarShowroomSimulator } from "@/components/media/CarShowroomSimulator";
 import { MunicipalityInteractivePreview } from "@/components/media/MunicipalityInteractivePreview";
-import { PhoneStack } from "@/components/media/PhoneStack";
+import { JobFinderInteractiveSimulator } from "@/components/media/JobFinderInteractiveSimulator";
+import { GithubIcon } from "@/components/ui/Icons";
 import { ArrowUpRight, ExternalLink, Server, Smartphone, Sparkles, Layers, Cpu, CheckCircle2 } from "lucide-react";
-import { useDevNotifications } from "@/components/ui/DevNotificationHUD";
 
 interface SelectedWorkSectionProps {
   onSelectProject: (project: Project) => void;
@@ -17,7 +17,6 @@ export function SelectedWorkSection({
   onSelectProject,
   onOpenLightbox,
 }: SelectedWorkSectionProps) {
-  const { notify } = useDevNotifications();
   const primaryProjects = projectsData.filter((p) => p.featured);
   const secondaryProjects = projectsData.filter((p) => !p.featured);
 
@@ -53,24 +52,9 @@ export function SelectedWorkSection({
                 key={project.id}
                 className="group relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
               >
-                {/* Media Column (7 cols) */}
-                <div className="lg:col-span-7 order-2 lg:order-1" data-cursor="VIEW">
-                  <div
-                    onClick={() => {
-                      onSelectProject(project);
-                      notify("dom", "Qanz Academy Modal", "Opened deep case study breakdown");
-                    }}
-                    className="cursor-pointer transition-transform duration-500 ease-out group-hover:scale-[1.01]"
-                  >
-                    <BrowserFrame
-                      src={project.media[0]?.src || ""}
-                      alt={project.media[0]?.alt || ""}
-                      caption="Qanz Academy · Student Portal & Interactive Course Discovery"
-                      domain="www.qanzacademy.online"
-                      badge="FOUNDER · RUNNING PLATFORM"
-                      onOpenLightbox={onOpenLightbox}
-                    />
-                  </div>
+                {/* Media Column (7 cols): Functioning E-Learning Discovery Simulator & Live Link */}
+                <div className="lg:col-span-7 order-2 lg:order-1">
+                  <QanzInteractivePreview />
                 </div>
 
                 {/* Narrative Column (5 cols) */}
@@ -361,9 +345,9 @@ export function SelectedWorkSection({
                   </div>
                 </div>
 
-                {/* Media Column: 3-Phone Stack (7 cols) */}
-                <div className="lg:col-span-7" data-cursor="OPEN">
-                  <PhoneStack onOpenLightbox={onOpenLightbox} />
+                {/* Media Column: Flutter Mobile Simulator (7 cols) */}
+                <div className="lg:col-span-7">
+                  <JobFinderInteractiveSimulator />
                 </div>
               </div>
             );
@@ -386,40 +370,81 @@ export function SelectedWorkSection({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {secondaryProjects.map((proj) => (
               <div
                 key={proj.id}
                 onClick={() => onSelectProject(proj)}
                 data-cursor="pointer"
-                className="group p-6 rounded-3xl bg-white border border-[#F06595]/20 hover:border-[#845EF7]/50 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(240,101,149,0.12)] cursor-pointer flex flex-col justify-between space-y-6"
+                className="group relative p-7 rounded-3xl bg-gradient-to-br from-[#FFF5F9]/90 via-white to-[#F8F5FF]/90 border border-[#F06595]/30 hover:border-[#845EF7] transition-all duration-300 shadow-[0_12px_35px_rgba(240,101,149,0.1)] hover:shadow-[0_22px_55px_rgba(240,101,149,0.22)] cursor-pointer flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#FFF0F6] text-[#D6336C] border border-[#F06595]/25">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#FFF0F6] text-[#D6336C] border border-[#F06595]/30">
                       {proj.badge}
                     </span>
-                    <span className="text-xs font-mono text-[#867E91]">{proj.period}</span>
+                    <span className="text-xs font-mono text-[#867E91] font-semibold">{proj.period}</span>
                   </div>
 
-                  <h4 className="text-xl font-bold text-[#1C1924] group-hover:text-[#D6336C] transition-colors">
+                  <h4 className="text-2xl font-black text-[#1C1924] group-hover:text-[#D6336C] transition-colors">
                     {proj.title}
                   </h4>
 
                   <p className="text-sm text-[#5E5568] leading-relaxed">
                     {proj.shortSummary}
                   </p>
+
+                  {/* Interactive In-Card Preview Snippet */}
+                  {proj.id === "hynx-frontend" ? (
+                    <div className="p-3.5 rounded-2xl bg-white/90 border border-[#F06595]/20 text-xs font-mono space-y-2 shadow-2xs">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-[#1C1924]">Live Trading Workbench</span>
+                        <span className="text-[#20C997] font-bold">BTC/USDT $88,450.20 (+3.42%)</span>
+                      </div>
+                      <div className="text-[10px] text-[#867E91]">
+                        Responsive viewports · Sub-millisecond latency · TypeScript strict null checks
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-3.5 rounded-2xl bg-white/90 border border-[#845EF7]/20 text-xs font-mono space-y-2 shadow-2xs">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-[#1C1924]">React Component Library</span>
+                        <span className="text-[#7048E8] font-bold">Design System Tokens</span>
+                      </div>
+                      <div className="text-[10px] text-[#867E91]">
+                        Polymorphic buttons · State indicator badges · Modular prop contracts
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-mono text-[#845EF7]">
+                <div className="pt-4 border-t border-[#F06595]/15 flex items-center justify-between gap-3 text-xs font-mono">
                   <div className="flex flex-wrap gap-1.5">
                     {proj.technologies.primaryFrontend.slice(0, 3).map((t, idx) => (
-                      <span key={idx} className="text-[#867E91]">
+                      <span key={idx} className="px-2 py-0.5 rounded-md bg-white border border-[#F06595]/20 text-[#D6336C] font-semibold text-[10px]">
                         #{t}
                       </span>
                     ))}
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-[#D6336C] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+
+                  <div className="flex items-center space-x-2 shrink-0">
+                    {proj.githubUrl && (
+                      <a
+                        href={proj.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 rounded-xl bg-white border border-gray-200 text-[#1C1924] hover:text-[#D6336C] transition-colors"
+                        title="View on GitHub"
+                      >
+                        <GithubIcon className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    <span className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#F06595] to-[#845EF7] text-white font-bold flex items-center space-x-1 shadow-xs group-hover:shadow-md transition-all text-xs">
+                      <span>Explore Demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}

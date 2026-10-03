@@ -4,7 +4,10 @@ import { useEffect } from "react";
 import { X, ExternalLink, CheckCircle2, Server, Layout } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { Project } from "@/data/projects";
-import { BrowserFrame } from "@/components/media/BrowserFrame";
+import { QanzInteractivePreview } from "@/components/media/QanzInteractivePreview";
+import { HynxInteractivePreview } from "@/components/media/HynxInteractivePreview";
+import { ElevvoInteractivePreview } from "@/components/media/ElevvoInteractivePreview";
+import { JobFinderInteractiveSimulator } from "@/components/media/JobFinderInteractiveSimulator";
 import { CarShowroomSimulator } from "@/components/media/CarShowroomSimulator";
 import { MunicipalityInteractivePreview } from "@/components/media/MunicipalityInteractivePreview";
 import { PhoneStack } from "@/components/media/PhoneStack";
@@ -39,7 +42,7 @@ export function ProjectModal({ project, onClose, onOpenLightbox }: ProjectModalP
       role="dialog"
       aria-modal="true"
       aria-label={`${project.title} Case Study`}
-      className="fixed inset-0 z-9999 flex items-center justify-center p-3 sm:p-6 bg-black/40 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/50 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
@@ -107,23 +110,22 @@ export function ProjectModal({ project, onClose, onOpenLightbox }: ProjectModalP
             </p>
           </div>
 
-          {/* Media preview section */}
+          {/* Media preview section: Dedicated working simulators per project */}
           <div className="rounded-3xl overflow-hidden">
-            {project.id === "car-showroom-ml" ? (
-              <CarShowroomSimulator />
+            {project.id === "qanz-academy" ? (
+              <QanzInteractivePreview />
+            ) : project.id === "hynx-frontend" ? (
+              <HynxInteractivePreview />
+            ) : project.id === "elevvo-frontend" ? (
+              <ElevvoInteractivePreview />
+            ) : project.id === "job-finder-app" || project.category === "mobile" ? (
+              <JobFinderInteractiveSimulator />
             ) : project.id === "municipality-portal" ? (
               <MunicipalityInteractivePreview />
-            ) : project.category === "mobile" ? (
-              <PhoneStack onOpenLightbox={onOpenLightbox} />
+            ) : project.id === "car-showroom-ml" ? (
+              <CarShowroomSimulator />
             ) : (
-              <BrowserFrame
-                src={project.media[0]?.src || ""}
-                alt={project.media[0]?.alt || ""}
-                caption={project.media[0]?.caption}
-                badge={project.badge}
-                domain={project.url ? new URL(project.url).hostname : undefined}
-                onOpenLightbox={onOpenLightbox}
-              />
+              <QanzInteractivePreview />
             )}
           </div>
 

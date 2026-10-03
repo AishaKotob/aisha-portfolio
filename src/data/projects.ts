@@ -143,6 +143,7 @@ export const projectsData: Project[] = [
     period: "MAR 2026 — PRESENT",
     featured: true,
     order: 2,
+    githubUrl: "https://github.com/AishaKotob",
     shortSummary:
       "Citizen-facing civic services and internal municipal workflow portal, undergoing active development towards public launch following successful local demonstration.",
     headline:
@@ -224,6 +225,7 @@ export const projectsData: Project[] = [
     period: "2025",
     featured: true,
     order: 3,
+    githubUrl: "https://github.com/AishaKotob",
     shortSummary:
       "A modern automotive browsing showroom integrated with an intelligent machine learning interface for vehicle pricing and market demand prediction.",
     headline:
@@ -286,6 +288,7 @@ export const projectsData: Project[] = [
     period: "2024 — 2025",
     featured: true,
     order: 4,
+    githubUrl: "https://github.com/AishaKotob",
     shortSummary:
       "A cross-platform mobile application providing seamless job discovery, multi-criteria filtering, and one-tap candidate applications.",
     headline:
@@ -393,6 +396,7 @@ export const projectsData: Project[] = [
     period: "JAN 2026 — PRESENT",
     featured: false,
     order: 6,
+    githubUrl: "https://github.com/AishaKotob",
     shortSummary:
       "Contributing to commercial web products with an explicit focus on responsive behavior, UI debugging, testing, and API integration.",
     headline:

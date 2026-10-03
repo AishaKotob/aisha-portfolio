@@ -82,7 +82,7 @@ export function CustomCursor() {
   const isSpecial = ["VIEW", "OPEN", "DRAG", "PLAY", "TEST", "↗"].includes(cursorType);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-99999 overflow-hidden transition-opacity duration-300">
+    <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden transition-opacity duration-300">
       {/* Front-end developer code beacon pointer */}
       <div
         className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-[#E64980] shadow-[0_0_8px_rgba(230,73,128,0.8)] transition-transform duration-75 ease-out"
