@@ -1,69 +1,142 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useCallback, useEffect } from "react";
+import { Project, projectsData } from "@/data/projects";
+
+// UI Framework Components
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { MicroLoader } from "@/components/ui/MicroLoader";
+import { Navbar } from "@/components/ui/Navbar";
+import { CommandPalette } from "@/components/ui/CommandPalette";
+import { ProjectModal } from "@/components/ui/ProjectModal";
+import { Lightbox, LightboxData } from "@/components/media/Lightbox";
+import { Footer } from "@/components/ui/Footer";
+
+// Section Components
+import { HeroSection } from "@/components/sections/HeroSection";
+import { IntroductionSection } from "@/components/sections/IntroductionSection";
+import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection";
+import { FrontendCraftSection } from "@/components/sections/FrontendCraftSection";
+import { CreativeLabSection } from "@/components/sections/CreativeLabSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { TechnicalBreadthSection } from "@/components/sections/TechnicalBreadthSection";
+import { EducationSection } from "@/components/sections/EducationSection";
+import { TeachingSection } from "@/components/sections/TeachingSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [lightboxData, setLightboxData] = useState<LightboxData | null>(null);
+
+  // Global keyboard shortcut for Command Palette (⌘K or Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const handleOpenLightbox = useCallback(
+    (src: string, alt: string, caption?: string) => {
+      setLightboxData({ src, alt, caption });
+    },
+    []
+  );
+
+  const handleSelectProjectById = useCallback((id: string) => {
+    const found = projectsData.find((p) => p.id === id || p.slug === id);
+    if (found) {
+      setSelectedProject(found);
+    }
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative min-h-screen bg-[#FCFAFC] text-[#1C1924] selection:bg-[#F06595]/20 selection:text-[#A61E4D]">
+      {/* Interactive Custom Cursor */}
+      <CustomCursor />
+
+      {/* First-session Micro-loader */}
+      <MicroLoader />
+
+      {/* Navigation */}
+      <Navbar onOpenCommand={() => setCommandPaletteOpen(true)} />
+
+      {/* 01 Hero Section */}
+      <HeroSection
+        onExploreWork={() => {
+          document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        onAboutClick={() => {
+          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+        }}
+      />
+
+      {/* 02 Frontend Philosophy & Introduction */}
+      <IntroductionSection />
+
+      {/* 03 Selected Work (Case Studies: Qanz, Municipality, Car Showroom ML, Job Finder) */}
+      <SelectedWorkSection
+        onSelectProject={(project) => setSelectedProject(project)}
+        onOpenLightbox={handleOpenLightbox}
+      />
+
+      {/* 04 Frontend Craft (Interactive Capability Cards) */}
+      <FrontendCraftSection />
+
+      {/* 05 Creative Lab (Code Bloom, Component Gravity, Type Motion, Anime.js Stage) */}
+      <CreativeLabSection />
+
+      {/* 06 Experience (HYNX, Remote Digital, Municipality, Qanz, Freelance, Elevvo, eFlow.ai) */}
+      <ExperienceSection />
+
+      {/* 07 Technical Breadth (Beyond the Interface & Interactive Skill Constellation) */}
+      <TechnicalBreadthSection
+        onSelectProjectById={handleSelectProjectById}
+      />
+
+      {/* 08 Education & Recognition (3.94 GPA, LIU High Distinction, Certificates) */}
+      <EducationSection />
+
+      {/* 09 Teaching & Leadership */}
+      <TeachingSection />
+
+      {/* 10 About Aisha */}
+      <AboutSection />
+
+      {/* 11 Contact */}
+      <ContactSection />
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Command Palette Modal */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+        onSelectProject={(projectId) => {
+          const found = projectsData.find((p) => p.id === projectId);
+          if (found) setSelectedProject(found);
+        }}
+      />
+
+      {/* Project Case Study Detailed Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        onOpenLightbox={handleOpenLightbox}
+      />
+
+      {/* Fullscreen Lightbox */}
+      <Lightbox
+        data={lightboxData}
+        onClose={() => setLightboxData(null)}
+      />
+    </main>
   );
 }

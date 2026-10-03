@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Eye-comfortable, ultra-chic light theme with soft girly rose & lilac undertones */
+    --bg-base: #FCFAFC;
+    --bg-surface: #FFFFFF;
+    --bg-secondary: #F6F1F7;
+    --bg-elevated: #FFF4F8;
+    
+    /* Elegant front-end engineering & chic accents */
+    --rose-soft: #F06595;
+    --rose-vivid: #E64980;
+    --blush-accent: #FCC2D7;
+    --lavender-tech: #845EF7;
+    --cyan-mint: #20C997;
+    --violet-royal: #7048E8;
+    
+    /* Text Hierarchy */
+    --text-primary: #1C1924;
+    --text-body: #494454;
+    --text-muted: #867E91;
+    
+    /* Borders & Glass */
+    --border-subtle: rgba(230, 73, 128, 0.12);
+    --border-card: rgba(132, 94, 247, 0.14);
+    --border-rose: rgba(240, 101, 149, 0.28);
+    --shadow-soft: 0 12px 35px -8px rgba(240, 101, 149, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    background-color: var(--bg-base);
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    selection-background-color: #F06595;
+    selection-color: #FFFFFF;
+  }
+
+  ::selection {
+    background: rgba(240, 101, 149, 0.22);
+    color: #A61E4D;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar in chic rose-lilac */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5D5EB;
+  border-radius: 9999px;
+  border: 2px solid #F8F5F9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F06595;
+}
+
+/* Clean glassmorphism cards for light aesthetic */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(240, 101, 149, 0.14);
+  box-shadow: 0 10px 30px -10px rgba(220, 90, 140, 0.06);
+}
+
+.glass-panel-plum {
+  background: rgba(255, 244, 248, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(132, 94, 247, 0.2);
+  box-shadow: 0 12px 32px -8px rgba(132, 94, 247, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FFF8FA 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 101, 149, 0.15);
+  box-shadow: 0 8px 24px -6px rgba(220, 80, 140, 0.07);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(240, 101, 149, 0.45);
+  box-shadow: 0 16px 40px -10px rgba(240, 101, 149, 0.16), 0 0 20px -4px rgba(132, 94, 247, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Technical typography accents */
+.font-mono-tech {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.font-serif-accent {
+  font-family: var(--font-instrument-serif), Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Glow effects in chic rosy & lilac tones */
+.glow-raspberry {
+  box-shadow: 0 0 25px -4px rgba(240, 101, 149, 0.3);
+}
+
+.glow-violet {
+  box-shadow: 0 0 28px -4px rgba(132, 94, 247, 0.28);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px -4px rgba(32, 201, 151, 0.28);
+}
+
+.text-gradient-violet-raspberry {
+  background: linear-gradient(135deg, #7048E8 0%, #D6336C 60%, #F06595 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan-violet {
+  background: linear-gradient(135deg, #0CA678 0%, #7048E8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-rose-gold {
+  background: linear-gradient(135deg, #D6336C 0%, #F06595 50%, #845EF7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Eye-comfortable engineering grids with subtle pastel lines */
+.tech-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(230, 73, 128, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 73, 128, 0.04) 1px, transparent 1px);
+}
+
+.tech-dots {
+  background-image: radial-gradient(rgba(132, 94, 247, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Pulse badge */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
+
+/* Code scanline effect for front-end feel */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
 }

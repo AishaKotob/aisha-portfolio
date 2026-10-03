@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101018"/>
+      <stop offset="50%" stop-color="#17141E"/>
+      <stop offset="100%" stop-color="#0B0912"/>
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#F45B9C"/>
+      <stop offset="100%" stop-color="#59D8FF"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(246, 241, 245, 0.04)" stroke-width="1"/>
+    </pattern>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="rgba(139, 92, 246, 0.12)" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="1200" fill="url(#bg-grad)"/>
+  <rect width="600" height="1200" fill="url(#grid)"/>
+  <rect width="600" height="1200" fill="url(#dots)"/>
+
+  <!-- Radial highlight -->
+  <circle cx="420" cy="360" r="240" fill="rgba(139, 92, 246, 0.08)"/>
+  <circle cx="180" cy="840" r="210" fill="rgba(244, 91, 156, 0.06)"/>
+
+  <!-- Technical border frame -->
+  <rect x="24" y="24" width="552" height="1152" rx="12" fill="none" stroke="rgba(246, 241, 245, 0.1)" stroke-width="1.5"/>
+  <rect x="28" y="28" width="544" height="1144" rx="8" fill="none" stroke="rgba(139, 92, 246, 0.15)" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Corner crosshairs -->
+  <path d="M 16 24 L 32 24 M 24 16 L 24 32" stroke="#59D8FF" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 568 24 L 584 24 M 576 16 L 576 32" stroke="#59D8FF" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 16 1176 L 32 1176 M 24 1168 L 24 1184" stroke="#59D8FF" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 568 1176 L 584 1176 M 576 1168 L 576 1184" stroke="#59D8FF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Blueprint UI lines -->
+  <g opacity="0.25">
+    <rect x="48" y="216" width="210" height="14" rx="4" fill="#F6F1F5"/>
+    <rect x="48" y="276" width="150" height="8" rx="3" fill="#8B5CF6"/>
+    <rect x="48" y="360" width="504" height="480" rx="8" fill="none" stroke="rgba(246, 241, 245, 0.2)" stroke-width="1"/>
+    <line x1="48" y1="540" x2="552" y2="540" stroke="rgba(246, 241, 245, 0.15)" stroke-dasharray="6,6"/>
+    <line x1="300" y1="360" x2="300" y2="840" stroke="rgba(246, 241, 245, 0.15)" stroke-dasharray="6,6"/>
+  </g>
+
+  <!-- Central Badge & Placeholder Notice -->
+  <g transform="translate(300, 600)">
+    <!-- Center badge container -->
+    <rect x="-240" y="-85" width="480" height="170" rx="16" fill="#17141E" stroke="rgba(139, 92, 246, 0.4)" stroke-width="1.5" filter="drop-shadow(0 15px 30px rgba(0,0,0,0.6))"/>
+    
+    <!-- Top indicator line -->
+    <line x1="-240" y1="-85" x2="240" y2="-85" stroke="url(#accent-grad)" stroke-width="3"/>
+
+    <!-- Status pill -->
+    <rect x="-90" y="-62" width="180" height="24" rx="12" fill="rgba(244, 91, 156, 0.15)" stroke="rgba(244, 91, 156, 0.4)" stroke-width="1"/>
+    <text x="0" y="-46" font-family="monospace" font-size="11" fill="#F45B9C" font-weight="600" text-anchor="middle" letter-spacing="1.5">PROJECT MEDIA</text>
+
+    <!-- Main title -->
+    <text x="0" y="-10" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" fill="#F6F1F5" font-weight="700" text-anchor="middle">Job Finder Mobile Stack</text>
+
+    <!-- Instruction line specified in rule 38 -->
+    <text x="0" y="16" font-family="monospace" font-size="13" fill="#59D8FF" text-anchor="middle" letter-spacing="0.5">Screenshot can be added here</text>
+
+    <!-- Role and surface tag -->
+    <text x="0" y="45" font-family="monospace" font-size="11" fill="#9D96A5" text-anchor="middle">// Flutter Mobile App · 3-Screen Discovery Flow</text>
+  </g>
+
+  <!-- Bottom metadata bar -->
+  <rect x="40" y="1140" width="520" height="32" rx="6" fill="rgba(8, 8, 13, 0.7)" stroke="rgba(246, 241, 245, 0.06)" stroke-width="1"/>
+  <text x="56" y="1161" font-family="monospace" font-size="11" fill="#8B5CF6">INTERFACE ARCHITECTURE</text>
+  <text x="544" y="1161" font-family="monospace" font-size="11" fill="#9D96A5" text-anchor="end">UNIVERSITY PROJECT</text>
+</svg>
